@@ -6,7 +6,6 @@ import hu.unideb.model.Student;
 import hu.unideb.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.slf4j.Logger;

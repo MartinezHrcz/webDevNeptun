@@ -40,11 +40,16 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public Student updateOne(@NonNull Student student) {
-        return null;
+        final var oldStudent = students.get(student.getNeptun());
+        oldStudent.setName(student.getNeptun());
+        oldStudent.setProgram(student.getProgram());
+        oldStudent.setUpdated(OffsetDateTime.now());
+        students.put(oldStudent.getNeptun(), student);
+        return oldStudent;
     }
 
     @Override
     public void deleteByNeptun(@NonNull String neptun) {
-
+        students.remove(neptun);
     }
 }
