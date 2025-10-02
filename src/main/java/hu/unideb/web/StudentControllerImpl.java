@@ -1,22 +1,25 @@
 package hu.unideb.web;
 
 import hu.unideb.model.Student;
+import hu.unideb.repository.StudentRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 public class StudentControllerImpl implements StudentController {
+
+    private final StudentRepository studentRepository;
+
     @Override
     public List<Student> getAllStudents() {
-        return List.of();
+        return studentRepository.findAll();
     }
 
     @Override
     public Student getStudentByNeptun(String neptun) {
-        return Student.builder().neptun(neptun).name("Test").program(Student.Program.CS_Bsc)
-                .created(OffsetDateTime.now().minusHours(1))
-                .updated(OffsetDateTime.now()).build();
+        return studentRepository.findByNeptun(neptun).orElseThrow(IllegalArgumentException::new);
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.time.OffsetDateTime;
+import java.util.Random;
 
 @Data
 @AllArgsConstructor
@@ -24,6 +25,13 @@ public class Student {
         @JsonProperty("Programtervező informatikus")
         CS_Bsc,
         CSE_Bsc,
-        BI_Bsc
+        BI_Bsc;
+
+        private static final Random RANDOM = new Random();
+
+        public static Program random() {
+            int position = RANDOM.nextInt(Program.values().length);
+            return Program.values()[position];
+        }
     }
 }
